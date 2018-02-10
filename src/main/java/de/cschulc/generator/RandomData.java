@@ -3,227 +3,195 @@ package de.cschulc.generator;
 import de.cschulc.generator.domain.RandomAdresse;
 import de.cschulc.generator.domain.RandomPerson;
 import de.cschulc.generator.domain.RandomStadt;
-import de.cschulc.generator.domain.RandomVorwahl;
 
-public class RandomData extends RandomBase implements IRandomData {
+import java.util.Map;
 
+public interface RandomData {
 
-    private static RandomData instance;
+    /**
+     * Liefert einen zufaellige Person mit Adresse
+     *
+     * @return RandomPerson
+     */
+    RandomPerson getPerson();
 
-    public static RandomData getInstance() {
-        if (instance == null) {
-            instance = new RandomData();
-        }
-        return instance;
-    }
+    /**
+     * Liefert einen zufaellige maennliche Person mit Adresse
+     *
+     * @return RandomPerson
+     */
+    RandomPerson getPersonMaennlich();
 
-    private RandomData() {
-        super();
-    }
+    /**
+     * Liefert einen zufaellige weibliche Person mit Adresse
+     *
+     * @return RandomPerson
+     */
+    RandomPerson getPersonWeiblich();
 
+    /**
+     * Liefert eine zufaellige Adresse
+     *
+     * @return
+     */
+    RandomAdresse getAdresse();
 
-    @Override
-    public RandomPerson getPerson() {
-        String vorname = getVorname();
-        return getPerson(vorname);
-    }
+    /**
+     * Liefert eine zufaellige Stadt mit Postleitzahl
+     *
+     * @return RandomStadt
+     */
+    RandomStadt getStadt();
 
-    @Override
-    public RandomPerson getPersonMaennlich() {
-        String vorname = getVornameMaennlich();
-        return getPerson(vorname);
-    }
+    /**
+     * Liefert ein zufaelligen Land
+     *
+     * @return String
+     */
+    String getLand();
 
-    @Override
-    public RandomPerson getPersonWeiblich() {
-        String vorname = getVornameWeiblich();
-        return getPerson(vorname);
-    }
+    /**
+     * Liefert einen zufaelligen Vorname, maennlich oder weiblich
+     *
+     * @return String
+     */
+    String getVorname();
 
-    @Override
-    public RandomAdresse getAdresse() {
-        String strasse = getStrasse();
-        String hausnummer = getHausnummer();
-        RandomStadt stadt = getStadt();
-        return new RandomAdresse(strasse, hausnummer, stadt.getPlz(), stadt.getName());
-    }
+    /**
+     * Liefert einen zufaelligen maenlichen Vornamen
+     *
+     * @return String
+     */
+    String getVornameMaennlich();
 
-    @Override
-    public RandomStadt getStadt() {
-        int size = dataHolder.staedte.size();
-        return dataHolder.staedte.get(random.nextInt(size));
-    }
+    /**
+     * Liefert einen zufaelligen weiblichen Vornamen
+     *
+     * @return String
+     */
+    String getVornameWeiblich();
 
-    @Override
-    public String getLand() {
-        return getRandomElement(dataHolder.laender);
-    }
+    /**
+     * Liefert einen Nachnamen
+     *
+     * @return String
+     */
+    String getNachname();
 
-    @Override
-    public String getVorname() {
-        return getRandomElement(dataHolder.vornamen);
-    }
+    /**
+     * Liefert eine zufaellige Festnetznummer
+     *
+     * @return String
+     */
+    String getTelefonnummer();
 
-    @Override
-    public String getVornameMaennlich() {
-        return getRandomElement(dataHolder.vorname_m);
-    }
+    /**
+     * Liefert eine zufaellige Festnetznummer mit dem gewuenschten Trennzwichen
+     *
+     * @param trennzeichen Das gewuenschte Trennzeichen
+     * @return String
+     */
+    String getTelefonnummer(String trennzeichen);
 
-    @Override
-    public String getVornameWeiblich() {
-        return getRandomElement(dataHolder.vorname_w);
-    }
+    /**
+     * Liefert eine zufaellige Handynummer
+     *
+     * @return String
+     */
+    String getHandynummer();
 
-    @Override
-    public String getNachname() {
-        return getRandomElement(dataHolder.nachnamen);
-    }
+    /**
+     * Liefert eine zufaellige Handynummer mit dem gewuenschten Trennzwichen
+     *
+     * @param trennzeichen Das gewuenschte Trennzeichen
+     * @return String
+     */
+    String getHandynummer(String trennzeichen);
 
+    /**
+     * Liefert einen zufaellige Email-Adresse aus Vorname.Nachmachen@test.de
+     *
+     * @return String
+     */
+    String getEmail();
 
-    @Override
-    public String getTelefonnummer() {
-        String randomNumber = getRandomNumber(4, 8);
-        int size = dataHolder.vorwahl_stadt.size();
-        RandomVorwahl randomVorwahl = dataHolder.vorwahl_stadt.get(random.nextInt(size));
-        return randomVorwahl.getVorwahl() + randomNumber;
-    }
+    /**
+     * Liefert einen zufaellige Email-Adresse aus Vorname.Nachname@domain
+     *
+     * @param domain Die domain der Email-Adressen
+     * @return String
+     */
+    String getEmail(String domain);
 
-    @Override
-    public String getTelefonnummer(String trennzeichen) {
-        String randomNumber = getRandomNumber(4, 8);
-        int size = dataHolder.vorwahl_stadt.size();
-        RandomVorwahl randomVorwahl = dataHolder.vorwahl_stadt.get(random.nextInt(size));
-        return randomVorwahl.getVorwahl() + trennzeichen + randomNumber;
-    }
+    /**
+     * Liefert einen zufaellige maennliche Email-Adresse aus Vorname.Nachmachen@test.de
+     *
+     * @return String
+     */
+    String getEmailMaennlich();
 
-    @Override
-    public String getHandynummer() {
-        String randomNumber = getRandomNumber(7, 10);
-        return getRandomElement(dataHolder.handyvorwahl_de) + randomNumber;
-    }
+    /**
+     * Liefert einen zufaellige maennliche Email-Adresse aus Vorname.Nachname@domain
+     *
+     * @param domain Die domain der Email-Adressen
+     * @return String
+     */
+    String getEmailMaennlich(String domain);
 
-    @Override
-    public String getHandynummer(String trennzeichen) {
-        String randomNumber = getRandomNumber(7, 10);
-        return getRandomElement(dataHolder.handyvorwahl_de) + trennzeichen + randomNumber;
-    }
+    /**
+     * Liefert einen zufaellige weibliche Email-Adresse aus Vorname.Nachmachen@test.de
+     *
+     * @return String
+     */
+    String getEmailWeiblich();
 
-    @Override
-    public String getEmail() {
-        String vorname = getRandomElement(dataHolder.vornamen);
-        String nachname = getRandomElement(dataHolder.nachnamen);
-        String domain = getRandomElement(dataHolder.domains);
-        return buildEmailAddress(vorname, nachname, domain);
-    }
+    /**
+     * Liefert einen zufaellige weibliche Email-Adresse aus Vorname.Nachname@domain
+     *
+     * @param domain Die domain der Email-Adressen
+     * @return String
+     */
+    String getEmailWeiblich(String domain);
 
-    @Override
-    public String getEmail(String domain) {
-        String vorname = getRandomElement(dataHolder.vornamen);
-        String nachname = getRandomElement(dataHolder.nachnamen);
-        return buildEmailAddress(vorname, nachname, domain);
-    }
+    /**
+     * Baut aus den uebergebenen Werten die Email-Adresse vorname.nachname@domain
+     *
+     * @param vorname  Ein Vorname
+     * @param nachname Ein Nachname
+     * @param domain   Eine Domain
+     * @return String
+     */
+    String getEmail(String vorname, String nachname, String domain);
 
-    @Override
-    public String getEmailMaennlich() {
-        String vorname = getRandomElement(dataHolder.vorname_m);
-        String nachname = getRandomElement(dataHolder.nachnamen);
-        String domain = getRandomElement(dataHolder.domains);
-        return buildEmailAddress(vorname, nachname, domain);
-    }
+    /**
+     * Baut aus den uebergebenen Werten die Email-Adresse vorname.nachname@test.de
+     *
+     * @param vorname  Ein Vorname
+     * @param nachname Ein Nachname
+     * @return String
+     */
+    String getEmail(String vorname, String nachname);
 
-    @Override
-    public String getEmailMaennlich(String domain) {
-        String vorname = getRandomElement(dataHolder.vorname_m);
-        String nachname = getRandomElement(dataHolder.nachnamen);
-        return buildEmailAddress(vorname, nachname, domain);
-    }
+    /**
+     * Liefert einen zufaelligen Strassennamen
+     *
+     * @return String
+     */
+    String getStrasse();
 
-    @Override
-    public String getEmailWeiblich() {
-        String vorname = getRandomElement(dataHolder.vorname_w);
-        String nachname = getRandomElement(dataHolder.nachnamen);
-        String domain = getRandomElement(dataHolder.domains);
-        return buildEmailAddress(vorname, nachname, domain);
-    }
+    /**
+     * Liefert eine zufaellige Hausnummer bis 250
+     *
+     * @return String
+     */
+    String getHausnummer();
 
-    @Override
-    public String getEmailWeiblich(String domain) {
-        String vorname = getRandomElement(dataHolder.vorname_w);
-        String nachname = getRandomElement(dataHolder.nachnamen);
-        return buildEmailAddress(vorname, nachname, domain);
-    }
-
-    @Override
-    public String getEmail(String vorname, String nachname, String domain) {
-        return buildEmailAddress(vorname, nachname, domain);
-    }
-
-    @Override
-    public String getEmail(String vorname, String nachname) {
-        String domain = getRandomElement(dataHolder.domains);
-        return buildEmailAddress(vorname, nachname, domain);
-    }
-
-    @Override
-    public String getStrasse() {
-        StringBuilder sb = new StringBuilder();
-        int count = getCount(0, 4);
-        switch (count) {
-            case 0:
-                sb.append(getRandomElement(dataHolder.vornamen));
-                break;
-            case 1:
-                sb.append(getRandomElement(dataHolder.nachnamen));
-                break;
-            case 2:
-                sb.append(getRandomElement(dataHolder.laender));
-                break;
-            case 3:
-                sb.append(getRandomElement(dataHolder.woerter));
-                break;
-            case 4:
-                RandomStadt stadt = getStadt();
-                sb.append(stadt.getName());
-                break;
-        }
-        String endung = getRandomElement(dataHolder.strassenendung);
-        sb.append(endung);
-        return sb.toString();
-    }
-
-    @Override
-    public String getHausnummer() {
-        return String.valueOf(random.nextInt(250));
-    }
-
-    @Override
-    public String getStrasseMitHausnummer() {
-        return getStrasse() + " " + getHausnummer();
-    }
+    /**
+     * Liefert einen zufaellige Strasse mit Hausnummer
+     *
+     * @return String
+     */
+    String getStrasseMitHausnummer();
 
 
-    private String getRandomNumber(int min, int max) {
-        StringBuilder sb = new StringBuilder();
-        // Damit die Telefonnummer nicht mit 0 beginnt
-        sb.append(random.nextInt(9) + 1);
-        // laenge der Telefonnummer
-        int lenght = getCount(min, max);
-        for (int i = 0; i < lenght; i++) {
-            sb.append(random.nextInt(9));
-        }
-        return sb.toString();
-    }
-
-    private String buildEmailAddress(String vorname, String nachname, String domain) {
-        StringBuilder sb = new StringBuilder();
-        return sb.append(vorname).append(".").append(nachname).append("@").append(domain).toString();
-    }
-
-    private RandomPerson getPerson(String vorname) {
-        String nachname = getNachname();
-        RandomAdresse adresse = getAdresse();
-        String telefonnummer = getTelefonnummer();
-        String handynummer = getHandynummer();
-        return new RandomPerson(adresse, vorname, nachname,telefonnummer, handynummer);
-    }
 }

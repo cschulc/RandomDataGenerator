@@ -5,7 +5,7 @@ import de.cschulc.generator.core.DataHolder;
 import java.util.List;
 import java.util.Random;
 
-public class RandomBase {
+public abstract class RandomBase {
 
     protected final Random random;
 
