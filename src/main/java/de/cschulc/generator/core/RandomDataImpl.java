@@ -1,5 +1,6 @@
-package de.cschulc.generator;
+package de.cschulc.generator.core;
 
+import de.cschulc.generator.RandomData;
 import de.cschulc.generator.domain.RandomAdresse;
 import de.cschulc.generator.domain.RandomPerson;
 import de.cschulc.generator.domain.RandomStadt;

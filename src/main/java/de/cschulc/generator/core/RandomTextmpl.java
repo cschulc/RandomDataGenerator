@@ -1,6 +1,8 @@
-package de.cschulc.generator;
+package de.cschulc.generator.core;
 
-public class RandomTextDataImpl extends RandomBase implements RandomTextData {
+import de.cschulc.generator.RandomText;
+
+public class RandomTextmpl extends RandomBase implements RandomText {
 
     @Override
     public String getWoerter(int anzahl) {

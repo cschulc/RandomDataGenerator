@@ -1,10 +1,11 @@
 package de.cschulc.generator;
 
+import de.cschulc.generator.core.RandomDataImpl;
 import de.cschulc.generator.domain.RandomStadt;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TestRandomDataImpl {
+public class TestRandomData {
 
     @Test
     public void testRandomData(){

@@ -1,6 +1,6 @@
 package de.cschulc.generator;
 
-public interface RandomTextData {
+public interface RandomText {
 
     /**
      * Liefert eine Anzahl zufaelliger Woerter aus dem Katalog von Lorem Ipsum

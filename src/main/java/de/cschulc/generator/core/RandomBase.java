@@ -1,4 +1,4 @@
-package de.cschulc.generator;
+package de.cschulc.generator.core;
 
 import de.cschulc.generator.core.DataHolder;
 

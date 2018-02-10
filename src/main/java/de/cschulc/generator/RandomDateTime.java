@@ -2,7 +2,7 @@ package de.cschulc.generator;
 
 import java.time.LocalDate;
 
-public interface RandomTimeData {
+public interface RandomDateTime {
 
     LocalDate getGeburtsdatum(int minAlter, int maxAlter);
 
