@@ -9,6 +9,12 @@ public class TestRandomMarkdown extends TestBase {
     RandomMarkDown randomMarkDown = new RandomMarkdownImpl();
 
     @Test
+    public void testGetMarkdownFull(){
+        String markdownFull = randomMarkDown.getMarkdownFull();
+        Assert.assertNotNull(markdownFull);
+    }
+
+    @Test
     public void testGetZitat() {
         String zitat = randomMarkDown.getZitat();
         Assert.assertNotNull(zitat);

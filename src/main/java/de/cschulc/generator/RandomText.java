@@ -35,4 +35,12 @@ public interface RandomText {
      * @return
      */
     String getTitel(int min, int max);
+
+    /**
+     * Liefert einen Absatz mit der gewuenschten Anzahl an Zeilen.
+     *
+     * @param zeilen Die gewuenschte Anzahl an Zeilen
+     * @return String
+     */
+    String getAbsatz(int zeilen);
 }

@@ -28,6 +28,15 @@ public class RandomTextmpl extends RandomBase implements RandomText {
     }
 
 
+    @Override
+    public String getAbsatz(int zeilen) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < zeilen; i++) {
+            sb.append(getWoerter(10)).append("\n");
+        }
+        return sb.toString();
+    }
+
     private String getWords(int anzahl) {
         StringBuilder sb = new StringBuilder();
         int size = dataHolder.woerter.size();
@@ -50,4 +59,6 @@ public class RandomTextmpl extends RandomBase implements RandomText {
     private String toTitle(String words) {
         return words.substring(0, 1).toUpperCase() + words.substring(1);
     }
+
+
 }
