@@ -46,6 +46,18 @@ public class RandomDataImpl extends RandomBase implements RandomData {
     }
 
     @Override
+    public String getUsername() {
+        String vorname = getVorname();
+        String nachname = getNachname();
+        return createUsername(vorname, nachname);
+    }
+
+    @Override
+    public String getUsername(String vorname, String nachname) {
+        return createUsername(vorname, nachname);
+    }
+
+    @Override
     public String getVorname() {
         return getRandomElement(dataHolder.vornamen);
     }
@@ -210,6 +222,16 @@ public class RandomDataImpl extends RandomBase implements RandomData {
         RandomAdresse adresse = getAdresse();
         String telefonnummer = getTelefonnummer();
         String handynummer = getHandynummer();
-        return new RandomPerson(adresse, vorname, nachname,telefonnummer, handynummer);
+        return new RandomPerson(adresse, vorname, nachname, telefonnummer, handynummer);
+    }
+
+    private String createUsername(String vorname, String nachname) {
+        if (vorname == null || nachname == null) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder();
+        String substring = vorname.substring(0, 1);
+        sb.append(substring).append(".").append(nachname);
+        return sb.toString().toLowerCase();
     }
 }

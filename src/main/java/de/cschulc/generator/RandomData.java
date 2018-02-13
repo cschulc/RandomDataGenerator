@@ -51,6 +51,22 @@ public interface RandomData {
     String getLand();
 
     /**
+     * Liefert einen Benutzername in der Form ERSTER_BUCHSTABE_VORNAME.NACHNAME
+     *
+     * @return String
+     */
+    String getUsername();
+
+    /**
+     * Liefert einen Benutzername in der Form ERSTER_BUCHSTABE_VORNAME.NACHNAME
+     *
+     * @param vorname Der Vorname
+     * @param nachname Der Nachname
+     * @return String
+     */
+    String getUsername(String vorname, String nachname);
+
+    /**
      * Liefert einen zufaelligen Vorname, maennlich oder weiblich
      *
      * @return String
@@ -109,7 +125,7 @@ public interface RandomData {
     String getHandynummer(String trennzeichen);
 
     /**
-     * Liefert einen zufaellige Email-Adresse aus Vorname.Nachmachen@test.de
+     * Liefert einen zufaellige Email-Adresse aus Vorname.Nachmache@test.de
      *
      * @return String
      */
