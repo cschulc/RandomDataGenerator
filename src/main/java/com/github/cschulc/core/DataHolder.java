@@ -1,7 +1,7 @@
-package de.cschulc.generator.core;
+package com.github.cschulc.core;
 
-import de.cschulc.generator.domain.RandomStadt;
-import de.cschulc.generator.domain.RandomVorwahl;
+import com.github.cschulc.domain.RandomStadt;
+import com.github.cschulc.domain.RandomVorwahl;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

@@ -1,6 +1,6 @@
-package de.cschulc.generator.core;
+package com.github.cschulc.core;
 
-import de.cschulc.generator.RandomDateTime;
+import com.github.cschulc.RandomDateTime;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.time.LocalDate;

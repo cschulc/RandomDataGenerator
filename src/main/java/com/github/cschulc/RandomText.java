@@ -1,4 +1,4 @@
-package de.cschulc.generator;
+package com.github.cschulc;
 
 public interface RandomText {
 

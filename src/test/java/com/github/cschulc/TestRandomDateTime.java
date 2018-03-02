@@ -1,4 +1,4 @@
-package de.cschulc.generator;
+package com.github.cschulc;
 
 import org.junit.Test;
 

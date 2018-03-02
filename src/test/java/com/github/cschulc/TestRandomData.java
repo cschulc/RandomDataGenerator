@@ -1,7 +1,7 @@
-package de.cschulc.generator;
+package com.github.cschulc;
 
-import de.cschulc.generator.core.RandomDataImpl;
-import de.cschulc.generator.domain.RandomStadt;
+import com.github.cschulc.core.RandomDataImpl;
+import com.github.cschulc.domain.RandomStadt;
 import org.junit.Assert;
 import org.junit.Test;
 

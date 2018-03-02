@@ -1,6 +1,6 @@
-package de.cschulc.generator;
+package com.github.cschulc;
 
-import de.cschulc.generator.core.RandomMarkdownImpl;
+import com.github.cschulc.core.RandomMarkdownImpl;
 import org.junit.Assert;
 import org.junit.Test;
 

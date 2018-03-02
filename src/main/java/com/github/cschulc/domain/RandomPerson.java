@@ -1,4 +1,4 @@
-package de.cschulc.generator.domain;
+package com.github.cschulc.domain;
 
 public class RandomPerson extends RandomAdresse {
 

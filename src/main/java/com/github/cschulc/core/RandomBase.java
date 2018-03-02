@@ -1,6 +1,4 @@
-package de.cschulc.generator.core;
-
-import de.cschulc.generator.core.DataHolder;
+package com.github.cschulc.core;
 
 import java.util.List;
 import java.util.Random;

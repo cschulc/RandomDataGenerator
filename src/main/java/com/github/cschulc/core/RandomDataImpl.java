@@ -1,10 +1,10 @@
-package de.cschulc.generator.core;
+package com.github.cschulc.core;
 
-import de.cschulc.generator.RandomData;
-import de.cschulc.generator.domain.RandomAdresse;
-import de.cschulc.generator.domain.RandomPerson;
-import de.cschulc.generator.domain.RandomStadt;
-import de.cschulc.generator.domain.RandomVorwahl;
+import com.github.cschulc.domain.RandomAdresse;
+import com.github.cschulc.domain.RandomStadt;
+import com.github.cschulc.domain.RandomVorwahl;
+import com.github.cschulc.RandomData;
+import com.github.cschulc.domain.RandomPerson;
 
 public class RandomDataImpl extends RandomBase implements RandomData {
 

@@ -1,6 +1,6 @@
-package de.cschulc.generator.core;
+package com.github.cschulc.core;
 
-import de.cschulc.generator.RandomText;
+import com.github.cschulc.RandomText;
 
 public class RandomTextmpl extends RandomBase implements RandomText {
 

@@ -1,10 +1,8 @@
-package de.cschulc.generator;
+package com.github.cschulc;
 
-import de.cschulc.generator.domain.RandomAdresse;
-import de.cschulc.generator.domain.RandomPerson;
-import de.cschulc.generator.domain.RandomStadt;
-
-import java.util.Map;
+import com.github.cschulc.domain.RandomAdresse;
+import com.github.cschulc.domain.RandomStadt;
+import com.github.cschulc.domain.RandomPerson;
 
 public interface RandomData {
 
