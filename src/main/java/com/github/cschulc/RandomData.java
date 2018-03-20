@@ -30,7 +30,7 @@ public interface RandomData {
     /**
      * Liefert eine zufaellige Adresse
      *
-     * @return
+     * @return RandomAdresse
      */
     RandomAdresse getAdresse();
 

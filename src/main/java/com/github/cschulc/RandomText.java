@@ -32,7 +32,7 @@ public interface RandomText {
      *
      * @param min minimale Anzahl Woerter
      * @param max maximale Anzahl Woerter
-     * @return
+     * @return String
      */
     String getTitel(int min, int max);
 
