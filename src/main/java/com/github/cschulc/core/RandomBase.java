@@ -11,7 +11,7 @@ public abstract class RandomBase {
 
     public RandomBase() {
         random = new Random();
-        dataHolder = DataHolder.getInstance();
+        dataHolder = new DataHolder();
     }
 
     protected String getRandomElement(List<String> list) {

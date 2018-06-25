@@ -3,9 +3,8 @@ package com.github.cschulc.core;
 import com.github.cschulc.domain.RandomStadt;
 import com.github.cschulc.domain.RandomVorwahl;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,43 +25,30 @@ public class DataHolder {
     public final List<String> domains;
     public final List<String> rechtsform;
 
-    private static DataHolder instance;
-
-    public static DataHolder getInstance() {
-        if (instance == null) {
-            synchronized (DataHolder.class) {
-                instance = new DataHolder();
-            }
-        }
-        return instance;
-    }
-
-    private DataHolder() {
-        rechtsform = DataHolder.readLines("rechtsform.txt");
-        laender = DataHolder.readLines("laender.txt");
-        handyvorwahl_de = DataHolder.readLines("handyvorwahl_de.txt");
-        staedte = DataHolder.readStaedte("plz_stadt.txt");
-        vorname_m = DataHolder.readLines("vornamen_m.txt");
-        vorname_w = DataHolder.readLines("vornamen_w.txt");
+    public DataHolder() {
+        rechtsform = readLines("rechtsform.txt");
+        laender = readLines("laender.txt");
+        handyvorwahl_de = readLines("handyvorwahl_de.txt");
+        staedte = readStaedte("plz_stadt.txt");
+        vorname_m = readLines("vornamen_m.txt");
+        vorname_w = readLines("vornamen_w.txt");
         vornamen = new ArrayList<>();
         vornamen.addAll(vorname_m);
         vornamen.addAll(vorname_w);
-        bundeslaender_ak = DataHolder.readLines("bundeslaender_abk.txt");
-        domains = DataHolder.readLines("domains.txt");
-        nachnamen = DataHolder.readLines("nachnamen.txt");
-        bundeslaender = DataHolder.readLines("bundeslaender.txt");
-        woerter = DataHolder.readLines("lorem.txt");
-        strassenendung = DataHolder.readLines("strassenendungen.txt");
-        vorwahl_stadt = DataHolder.readVorwahlen("vorwahlen.txt");
+        bundeslaender_ak = readLines("bundeslaender_abk.txt");
+        domains = readLines("domains.txt");
+        nachnamen = readLines("nachnamen.txt");
+        bundeslaender = readLines("bundeslaender.txt");
+        woerter = readLines("lorem.txt");
+        strassenendung = readLines("strassenendungen.txt");
+        vorwahl_stadt = readVorwahlen("vorwahlen.txt");
     }
 
-    private static List<String> readLines(String filename) {
+    private List<String> readLines(String filename) {
         List<String> retval = new ArrayList<>();
         BufferedReader bufferedReader = null;
         try {
-            String path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-            FileReader fileReader = new FileReader(path + filename);
-            bufferedReader = new BufferedReader(fileReader);
+            bufferedReader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(filename)));
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 retval.add(line.trim());
@@ -81,13 +67,11 @@ public class DataHolder {
         return retval;
     }
 
-    private static List<RandomStadt> readStaedte(String filename) {
+    private List<RandomStadt> readStaedte(String filename) {
         List<RandomStadt> retval = new ArrayList<>();
         BufferedReader bufferedReader = null;
         try {
-            String path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-            FileReader fileReader = new FileReader(path + filename);
-            bufferedReader = new BufferedReader(fileReader);
+            bufferedReader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(filename)));
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] split = line.split(";");
@@ -107,13 +91,11 @@ public class DataHolder {
         return retval;
     }
 
-    private static List<RandomVorwahl> readVorwahlen(String filename) {
+    private List<RandomVorwahl> readVorwahlen(String filename) {
         List<RandomVorwahl> retval = new ArrayList<>();
         BufferedReader bufferedReader = null;
         try {
-            String path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-            FileReader fileReader = new FileReader(path + filename);
-            bufferedReader = new BufferedReader(fileReader);
+            bufferedReader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(filename)));
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] split = line.split(";");

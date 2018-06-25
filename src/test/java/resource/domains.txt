@@ -1,7 +1,0 @@
-test.de
-test.com
-googlemail.com
-outlook.de
-outlook.com
-web.de
-gmx.de
