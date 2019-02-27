@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2019. cschulc (https://github.com/cschulc)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ */
+
 package com.github.cschulc.core;
 
 import com.github.cschulc.domain.RandomAdresse;
@@ -214,7 +225,8 @@ public class RandomDataImpl extends RandomBase implements RandomData {
 
     private String buildEmailAddress(String vorname, String nachname, String domain) {
         StringBuilder sb = new StringBuilder();
-        return sb.append(vorname).append(".").append(nachname).append("@").append(domain).toString();
+        String email = sb.append(vorname).append(".").append(nachname).append("@").append(domain).toString();
+        return replaceUmlaut(email);
     }
 
     private RandomPerson getPerson(String vorname) {
@@ -233,5 +245,26 @@ public class RandomDataImpl extends RandomBase implements RandomData {
         String substring = vorname.substring(0, 1);
         sb.append(substring).append(".").append(nachname);
         return sb.toString().toLowerCase();
+    }
+
+    private String replaceUmlaut(String input) {
+
+        //replace all lower Umlauts
+        String output = input.replace("ü", "ue")
+                .replace("ö", "oe")
+                .replace("ä", "ae")
+                .replace("ß", "ss");
+
+        //first replace all capital umlaute in a non-capitalized context (e.g. Übung)
+        output = output.replace("Ü(?=[a-zäöüß ])", "Ue")
+                .replace("Ö(?=[a-zäöüß ])", "Oe")
+                .replace("Ä(?=[a-zäöüß ])", "Ae");
+
+        //now replace all the other capital umlaute
+        output = output.replace("Ü", "UE")
+                .replace("Ö", "OE")
+                .replace("Ä", "AE");
+
+        return output;
     }
 }
